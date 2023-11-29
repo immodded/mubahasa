@@ -150,14 +150,14 @@ PWA_APP_STATUS_BAR_COLOR = '#222831'
 PWA_APP_DEBUG_MODE = False
 PWA_APP_ICONS = [
     {
-        'src': '/static/favicon_io/favicon-16x16.png',
-        'sizes': '16x16'
+        'src': '/static/favicon_io/android-chrome-512x512.png',
+        'sizes': '512x512'
     }
 ]
 PWA_APP_ICONS_APPLE = [
     {
-        'src': '/static/favicon_io/favicon-16x16.png',
-        'sizes': '16x16'
+        'src': '/static/favicon_io/android-chrome-512x512.png',
+        'sizes': '512x512'
     }
 ]
 PWA_APP_SPLASH_SCREEN = [

@@ -6,6 +6,9 @@ venv/
 *.pyo# Virtual environment
 venv/
 
+# staticfiles directory
+staticfiles/
+
 # Byte-compiled files
 *.pyc
 *.pyo
