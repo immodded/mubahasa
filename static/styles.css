@@ -386,6 +386,7 @@ td a:hover {
 
 /* Message body styling */
 .message-body {
+    padding:5px 5px;
     font-size: 14px;
     color: var(--primary-color);
     word-wrap: break-word;

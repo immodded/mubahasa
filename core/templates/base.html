@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src="{% static 'script.js' %}"></script>
     <link rel="shortcut icon" href="{% static 'favicon_io/favicon.ico' %}" type="image/x-icon">
+    <meta content="MUBAHASA" name="title">
+    <meta content="Mubahasa : Discussion App." name="description">
+    <meta content="MODD" name="author">
+    <!-- Open Graph / Facebook -->
+    <meta content="{% block og_title %}{% endblock og_title %}| MUBAHASA" property="og:title">
+    <meta content="{% block og_desc %}{% endblock og_desc %}Mubahasa : Discussion App" property="og:description">
+    <meta content="{{ request.build_absolute_uri }}" property="og:url">
+    <meta content="https://dynamic-og-image-generator.vercel.app//api/generate?title={% block og_img_title %}{% endblock og_img_title %}&author=MUBAHASA&avatar={{ request.scheme }}://{{ request.get_host }}{% static 'favicon_io/favicon.ico' %}&websiteUrl={{ request.build_absolute_uri }}&theme=dracula" property="og:image">
+
+    <!-- Twitter -->
+    <meta content="summary_large_image" property="twitter:card">
+    <meta content="{{ request.build_absolute_uri }}" property="twitter:url">
+    <meta content="{% block twitter_title %}{% endblock twitter_title %}| MUBAHASA" property="twitter:title">
+    <meta content="{% block twitter_desc %}{% endblock twitter_desc %}Mubahasa : Discussion App" property="twitter:description">
+    <meta content="https://dynamic-og-image-generator.vercel.app//api/generate?title={% block twitter_img_title %}{% endblock twitter_img_title %}&author=MUBAHASA&avatar={{ request.scheme }}://{{ request.get_host }}{% static 'favicon_io/favicon.ico' %}&websiteUrl={{ request.build_absolute_uri }}&theme=dracula" property="twitter:image">
 </head>
 <body>
     <header>
@@ -24,7 +39,7 @@
         <li><a href="{% url 'Discussions' %}"><i class="fa-solid fa-comments fa-xl"></i> </a></li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'profile' %}"><i class="fa-solid fa-id-card-clip fa-xl"></i> </a></li>
-        <li><a href="{% url 'logout'%}?next={% url 'login' %}"><i class="fa-solid fa-right-from-bracket fa-xl"></i></a></li>
+        <li><a href="{% url 'logout'%}?next={% url 'index' %}"><i class="fa-solid fa-right-from-bracket fa-xl"></i></a></li>
         {% else %}
         <li><a href="{% url 'login'%}"><i class="fa-solid fa-right-to-bracket fa-xl"></i> </a></li>
         <li><a href="{% url 'signup'%}?next={{request.path}}"><i class="fa-solid fa-user-plus fa-xl"></i></a></li>
