@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Profile List{% endblock title %}
+{% block content %}
+      <h1 class="titlex">Profile List</h1>
+      <p> Profiles: {{ object_list|length }}</p>
+      <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Type</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profile in object_list %}
+                    <tr>
+                        <td>{{ profile.user.username }}</td>
+                        <td>{{ profile.type }}</td>
+                        <td>{{ profile.email }}</td>
+                        <td>{{ profile.mobile_number }}</td>
+                        <td>
+                            <a href="{% url 'user_profile_detail' profile.pk %}" class="btn btn-info">View</a>
+                            <a href="{% url 'user_profile_update' profile.pk %}" class="btn btn-warning">Update</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No Profiles found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+
+        
+{% endblock content %}

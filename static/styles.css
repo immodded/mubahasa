@@ -1,0 +1,412 @@
+/* Define color variables */
+:root {
+    --primary-color: #22092C;
+    /* Blue color */
+    --secondary-color: #BE3144;
+    /* Red color */
+}
+
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Set minimum height to 100% of the viewport height */
+}
+
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+nav {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Allow items to wrap to the next line on smaller screens */
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: underline;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-content,
+.left-content {
+    flex: 0 0 20%;
+    height: 70vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--primary-color) var(--secondary-color); /* Firefox */
+
+    /* Webkit (Chrome, Safari) */
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: var(--secondary-color);
+    }
+
+
+
+}
+
+.center-content {
+    flex: 0 0 60%;
+}
+
+.right-content {
+    order: 3;
+}
+
+.center-content {
+    order: 2;
+}
+
+.left-content {
+    order: 1;
+}
+
+/* For smaller screens (mobile) */
+@media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .center-content {
+        flex: 0 0 100%;
+    }
+
+    .left-content,
+    .right-content {
+        height: 20vh;
+        max-height: 20vh; 
+    }
+
+    
+}
+
+.form-container {
+    width: 50vw;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 85vw; 
+    }
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 8px;
+}
+
+form input,
+form select,
+form textarea {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+}
+
+footer {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    /* Push the footer to the bottom */
+}
+
+
+@media only screen and (max-width:400px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    
+}
+
+.titlex {
+    color: var(--primary-color);
+    /* Use the primary color for the title */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 8px;
+    padding: 2rem;
+    word-wrap: break-word;
+}
+
+.linkx {
+    color: var(--primary-color);
+    /* Use the primary color for links */
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 3px 3px;
+    border-radius: 5px;
+    border: 2px solid var(--secondary-color);
+}
+
+.linkx:hover {
+    background-color: var(--primary-color);
+    /* Change background color on hover */
+    color: var(--secondary-color);
+}
+
+
+/* Add CSS styles for the respective classes */
+.listx {
+    padding: 1rem 1rem;
+    list-style: none;
+}
+
+.itemx {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.linky {
+    text-decoration: none;
+    color: var(--primary-color)
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 8px 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+.page-link:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.page-link.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+thead {
+    background-color: #f2f2f2;
+}
+
+td a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+
+.profile-card {
+    width: 400px; 
+    margin: 20px auto; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 20px; 
+    background-color: #fff; 
+}
+
+.card-title {
+    color: var(--primary-color); 
+}
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.profile-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.profile-links {
+    margin-top: 20px;
+}
+
+
+
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.notification {
+    list-style: none;
+    padding: 0;
+}
+
+.notification li {
+    margin-bottom: 5px;
+}
+
+.close-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 2px solid var(--secondary-color)
+}
+
+.close-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color)
+}
+
+
+.errorlist {
+    color: #ff0000;
+    list-style-type: none;
+}
+
+.helptext {
+    color: var(--primary-color);
+    font-style: italic;
+    margin-top: 5px;
+}
+
+
+.message-box {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    max-width: 80vh;
+    margin: 10px auto;
+}
+
+/* Message creator and timestamp styling */
+.message-meta {
+    font-size: 12px;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+/* Message body styling */
+.message-body {
+    font-size: 14px;
+    color: var(--primary-color);
+    word-wrap: break-word;
+}
+
+
+.like-button {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.like-button.active {
+    background-color: var(--secondary-color); 
+    color: #fff; 
+}
+
+.like-button:hover {
+    background-color: var(--secondary-color)
+}

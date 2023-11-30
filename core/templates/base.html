@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %} | Mubahasa</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+    <header>
+        <h1>Mubahasa</h1>
+    </header>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'Discussions' %}">Discussions</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}">Profile[{{ user.username }}]</a></li>
+        <li><a href="{% url 'logout'%}?next={% url 'login' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'login'%}">Login</a></li>
+        <li><a href="{% url 'signup'%}?next={{request.path}}">Sign Up</a></li>
+        
+        {% endif %}
+    </ul>
+    
+</nav>
+
+{% if messages %}
+    <div class="notification-container">
+        <ul class="notification">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <button class="close-btn" onclick="closeMessage(this)">Close</button>
+    </div>
+{% endif %}
+
+<div class="container">
+    <div class="right-content">
+        {% block rightcontent %}{% endblock %}
+    </div>
+    <div class="center-content">
+        {% block content %}{% endblock %}
+        {% block pagination %}
+        {% if is_paginated %}
+            <ul class="pagination">
+    
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                            {{ page_obj.previous_page_number }}
+                        </a>
+                    </li>
+                {% endif %}
+    
+                <li class="page-item">
+                    <a class="page-link active" href="#">
+                        {{ page_obj.number }}
+                    </a>
+                </li>
+    
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                            {{ page_obj.next_page_number }}
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+    
+            </ul>
+        {% endif %}
+    {% endblock %}
+    </div>
+    <div class="left-content"><form action="{% url 'Discussions' %}" method="get">
+        <input type="text" name="q" placeholder="Search" id="q">
+<input type="submit" value="search">    
+</form>
+        {% block leftcontent %}{% endblock %}
+    </div>
+</div>
+
+
+
+    <footer>
+        &#169; created by <a class="linky" href="">MODD</a>
+    </footer>
+</body>
+</html>

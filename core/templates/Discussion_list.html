@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Discussions{% endblock title %}
+
+{% block content %}
+
+<a class="linkx" style="margin-left:1rem;" href="{% url 'Discussion_start' %}">Start Discussion</a>
+
+{% if Discussions %}
+<ul class="listx" >
+{% for Discussion in Discussions  %}
+    <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}">{{ Discussion.title }} [{{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>
+{% endfor %}
+{% else %}
+<p>No Discussion Found! Start one! </p>
+{% endif %}
+{% endblock content %}
+
+
+{% block rightcontent %}
+{% if top_discussions_by_user %}
+    <h3 class="titlex">Top 10 Users with the Most Discussions:</h3>
+    <ul class="listx">
+        {% for user_data in top_discussions_by_user %}
+            <li class="itemx">{{ user_data.creator__username }}: {{ user_data.total_discussions }} discussion{{ user_data.total_discussions|pluralize }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock rightcontent %}

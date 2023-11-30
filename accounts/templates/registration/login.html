@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock title %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <script type="text/javascript">
+            var targetURL = "{% url 'index' %}";
+            window.location.href = targetURL;
+        </script>
+    {% else %}
+    <div class="form-container">
+            <h1>Log In</h1> 
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="login"> 
+                <input type="hidden" name="next" value="{{ next }}">
+                <p>Not have account? <a class="linkx"href="{% url 'signup'%}">Create Account</a></p>
+            </form>
+        </div>            
+    {% endif %}
+{% endblock %}

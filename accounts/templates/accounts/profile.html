@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+    <div class="card profile-card">
+        <h3 class="card-title titlex">Profile</h3>
+
+        <div class="card-body">
+            <table class="profile-table">
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ profile.name }}</td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{ profile.user.username }}</td>
+                </tr>
+                <tr>
+                    <td>Mobile Number:</td>
+                    <td>{{ profile.mobile_number }}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{ profile.email }}</td>
+                </tr>
+                <tr>
+                    <td>About:</td>
+                    <td>{{ profile.about }}</td>
+                </tr>
+                <tr>
+                    <td>Type:</td>
+                    <td>{{ profile.type }}</td>
+                </tr>
+                <tr>
+                    <td>Last Login:</td>
+                    <td>{{ profile.user.last_login }}</td>
+                </tr>
+            </table>
+
+            <div class="profile-links">
+                <a class="linkx" href="{% url 'profile_update' %}">Update Profile</a>
+                <a class="linkx" href="{% url 'password_update' %}">Update Password</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

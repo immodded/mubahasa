@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Discussions{% endblock title %}
+
+{% block content %}
+ {% if user.is_superuser %}
+                  <a class="linkx" href="{% url 'admin:index' %}"><span>Admin Panel</span></a>
+                  <a class="linkx" href="{% url 'profile_list' %}"><span>Profile List</span></a> 
+                    {% endif %}
+<a class="linkx" style="margin-left:1rem;" href="{% url 'Discussion_start' %}">Start Discussion</a>
+
+{% if Discussions %}
+<h3 class="titlex">Most Liked Discussions</h3>
+<ul class="listx" >
+{% for Discussion in Discussions  %}
+    <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}">{{ Discussion.title }} [{{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>
+{% endfor %}
+{% else %}
+<p>No Discussion Found! Start one! </p>
+{% endif %}
+{% endblock content %}
