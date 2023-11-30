@@ -10,6 +10,14 @@ from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
+
+class ModdView(View):
+    template_name = "modd.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
 class index(ListView):
     model = Discussion
     template_name = 'index.html'  

@@ -9,5 +9,5 @@ urlpatterns = [
     path('discussion/detail/<uuid:pk>/Message', views.MessageCreateView.as_view(), name="Message_create"),
     path('discussion/<uuid:discussion_id>/messages', views.MessageListView.as_view(), name="Message_list"),
     path('discussion/<uuid:discussion_id>/toggle-like/', views.ToggleLikeView.as_view(), name='toggle_like'),
-    
+    path('modd', views.ModdView.as_view(), name="modd"),
 ]
