@@ -50,13 +50,13 @@
 </nav>
 
 {% if messages %}
-    <div class="notification-container">
+    <div class="notification-container" id="notifications">
         <ul class="notification">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
         </ul>
-        <button class="close-btn" onclick="closeMessage(this)">Close</button>
+        <button class="close-btn"  onclick="closeMessage(this)"><i class="fa-solid fa-x"></i></button>
     </div>
 {% endif %}
 

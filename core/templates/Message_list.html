@@ -18,7 +18,7 @@
         {% else %}
         <i class="fa-regular fa-heart"></i>
         {% endif %}[{{ total_likes }}]
-    </a><br>
+    </a><hr>
     <a class="like-button" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
         <i class="fab fa-facebook fa-xl"></i>
     </a>
@@ -26,7 +26,7 @@
         <i class="fab fa-whatsapp fa-xl"></i>
     </a>
     <a class="like-button" href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank">
-        <i class="fab fa-twitter" fa-xl></i>
+        <i class="fab fa-x-twitter" fa-xl></i>
     </a>
     <a class="like-button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank">
         <i class="fab fa-linkedin fa-xl"></i>
