@@ -9,7 +9,7 @@
 
 {% block content %}
 <h2 class="titlex">{{ discussion.title }}</h2>
-<h5 class="titlex">Started at {{ discussion.created_at }} by <i class="fa-solid fa-user"></i> {{ discussion.creator.username }}</h5>
+<h5 class="titlex">{{ discussion.visibility }} discussion Started at {{ discussion.created_at }} by <i class="fa-solid fa-user"></i> {{ discussion.creator.username }}</h5>
 <p> {{ discussion.description }} <br>
     <a class="linkx" href="{% url 'Message_create' discussion.pk %}"><i class="fa-regular fa-message"></i> Post message [{{ Messages|length }}]</a>
     <a href="{% url 'toggle_like' discussion.id %}" class="like-button {% if user_has_liked %}active{% endif %}">

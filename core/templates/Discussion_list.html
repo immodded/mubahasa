@@ -10,11 +10,18 @@
 {% block content %}
 
 <a class="linkx" style="margin-left:1rem;" href="{% url 'Discussion_start' %}"><i class="fa-regular fa-comments"></i> Start Discussion</a>
-
+{% if private_discussions %}
+<h3 class="titlex">Private Discussions</h3>
+<ul class="listx" >
+{% for Discussion in private_discussions  %}
+    <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i> {{ Discussion.title }} [ {% if request.user.is_superuser %}{{ Discussion.visibility }}{% endif %} {{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>
+{% endfor %}
+</ul>
+{% endif %}
 {% if Discussions %}
 <ul class="listx" >
 {% for Discussion in Discussions  %}
-    <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i> {{ Discussion.title }} [{{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>
+    <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i> {{ Discussion.title }} [ {% if request.user.is_superuser %}{{ Discussion.visibility }}{% endif %} {{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>
 {% endfor %}
 {% else %}
 <p>No Discussion Found! Start one! </p>

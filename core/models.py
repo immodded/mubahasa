@@ -11,7 +11,11 @@ class Discussion(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-
+    TYPE_OPTIONS = (
+        ('Public','Public'),
+        ('Private','Private'),
+    )
+    visibility = models.CharField(max_length=8,choices=TYPE_OPTIONS,default='Public')
     def __str__(self):
         return f"{self.title} | {self.creator.username}"
 
