@@ -1,28 +1,33 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% progressive_web_app_meta %}
     <title>{% block title %} {% endblock title %} | Mubahasa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src="{% static 'script.js' %}"></script>
+    <link rel="shortcut icon" href="{% static 'favicon_io/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1>Mubahasa</h1>
+        <h1>MUBAHASA</h1>
+        <h6 style="text-align:right;">Welcome! {% if user.is_authenticated %}{{ user.username }}{% else %}Guest.{% endif %}</h6>
     </header>
 
 <nav>
     <ul>
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="{% url 'Discussions' %}">Discussions</a></li>
+        <li><a href="{% url 'index' %}"><i class="fa-solid fa-house fa-xl"></i>  </a></li>
+        <li><a href="{% url 'Discussions' %}"><i class="fa-solid fa-comments fa-xl"></i> </a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'profile' %}">Profile[{{ user.username }}]</a></li>
-        <li><a href="{% url 'logout'%}?next={% url 'login' %}">Logout</a></li>
+        <li><a href="{% url 'profile' %}"><i class="fa-solid fa-id-card-clip fa-xl"></i> </a></li>
+        <li><a href="{% url 'logout'%}?next={% url 'login' %}"><i class="fa-solid fa-right-from-bracket fa-xl"></i></a></li>
         {% else %}
-        <li><a href="{% url 'login'%}">Login</a></li>
-        <li><a href="{% url 'signup'%}?next={{request.path}}">Sign Up</a></li>
+        <li><a href="{% url 'login'%}"><i class="fa-solid fa-right-to-bracket fa-xl"></i> </a></li>
+        <li><a href="{% url 'signup'%}?next={{request.path}}"><i class="fa-solid fa-user-plus fa-xl"></i></a></li>
         
         {% endif %}
     </ul>
@@ -88,7 +93,7 @@
     </div>
     <div class="left-content"><form action="{% url 'Discussions' %}" method="get">
         <input type="text" name="q" placeholder="Search" id="q">
-<input type="submit" value="search">    
+        <button class="form-button"type="submit"><i class="fa-solid fa-magnifying-glass"></i> Explore</button> 
 </form>
         {% block leftcontent %}{% endblock %}
     </div>

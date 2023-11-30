@@ -1,33 +1,30 @@
-/* Define color variables */
 :root {
-    --primary-color: #22092C;
-    /* Blue color */
-    --secondary-color: #BE3144;
-    /* Red color */
+    --primary-color: #222831;
+    --secondary-color: #00ADB5;
+    --tertiary-color:#EEEEEE;
 }
 
 
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--tertiary-color);
     color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* Set minimum height to 100% of the viewport height */
 }
 
 header {
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--tertiary-color);
     text-align: center;
-    padding: 10px;
+    padding: 0px 15px;
 }
 
 nav {
     background-color: var(--secondary-color);
-    color: #fff;
+    color: var(--tertiary-color);
     padding: 10px;
 }
 
@@ -38,7 +35,6 @@ nav ul {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* Allow items to wrap to the next line on smaller screens */
 }
 
 nav ul li {
@@ -46,7 +42,8 @@ nav ul li {
 }
 
 nav a {
-    text-decoration: underline;
+    padding-right: 5px;
+    text-decoration: none;
     color: var(--primary-color);
     font-weight: bold;
     font-size: 16px;
@@ -125,7 +122,7 @@ nav a {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: var(--tertiary-color);
 }
 
 @media (max-width: 768px) {
@@ -149,13 +146,13 @@ form select,
 form textarea {
     margin-bottom: 16px;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--tertiary-color);
     border-radius: 4px;
 }
 
 form input[type="submit"] {
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--tertiary-color);
     cursor: pointer;
 }
 
@@ -165,7 +162,6 @@ footer {
     text-align: center;
     padding: 10px;
     margin-top: auto;
-    /* Push the footer to the bottom */
 }
 
 
@@ -197,7 +193,6 @@ p {
 
 .linkx {
     color: var(--primary-color);
-    /* Use the primary color for links */
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
@@ -208,9 +203,8 @@ p {
 }
 
 .linkx:hover {
-    background-color: var(--primary-color);
-    /* Change background color on hover */
-    color: var(--secondary-color);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 
@@ -251,12 +245,12 @@ p {
 
 .page-link:hover {
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--tertiary-color);
 }
 
 .page-link.active {
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--tertiary-color);
 }
 
 
@@ -268,13 +262,13 @@ table {
 
 th,
 td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--tertiary-color);
     padding: 10px;
     text-align: left;
 }
 
 thead {
-    background-color: #f2f2f2;
+    background-color: var(--secondary-color);
 }
 
 td a {
@@ -289,13 +283,13 @@ td a:hover {
 
 
 .profile-card {
-    width: 400px; 
+    width: 70vw; 
     margin: 20px auto; 
-    border: 1px solid #ddd; 
+    border: 1px solid var(--tertiary-color); 
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     padding: 20px; 
-    background-color: #fff; 
+    background-color: var(--tertiary-color); 
 }
 
 .card-title {
@@ -310,7 +304,7 @@ td a:hover {
 
 .profile-table td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--tertiary-color);
 }
 
 .profile-links {
@@ -327,7 +321,7 @@ td a:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     padding: 10px;
-    border: 2px solid #ccc;
+    border: 2px solid var(--tertiary-color);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -369,12 +363,18 @@ td a:hover {
 
 
 .message-box {
+    width: 50vw;
     margin: 10px;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    max-width: 80vh;
     margin: 10px auto;
+}
+
+@media (max-width: 768px) {
+    .message-box {
+        width: 90vw; 
+    }
 }
 
 /* Message creator and timestamp styling */
@@ -391,11 +391,18 @@ td a:hover {
     word-wrap: break-word;
 }
 
+.form-button {
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    cursor: pointer;
+    padding: 5px;
 
+}
 .like-button {
     display: inline-block;
     padding: 5px 10px;
-    border: 2px solid var(--secondary-color);
     border-radius: 4px;
     text-decoration: none;
     color: var(--primary-color);
@@ -403,8 +410,7 @@ td a:hover {
 }
 
 .like-button.active {
-    background-color: var(--secondary-color); 
-    color: #fff; 
+    color: var(--primary-color); 
 }
 
 .like-button:hover {

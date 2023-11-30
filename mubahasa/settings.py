@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pwa',
     'core',
     'accounts',
 ]
@@ -133,3 +134,44 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+PWA_APP_NAME = 'Mubahasa'
+PWA_APP_DESCRIPTION = "A minimalistic Discussion Web App by IMMODDED"
+PWA_APP_THEME_COLOR = '#00ADB5'
+PWA_APP_BACKGROUND_COLOR = '#EEEEEE'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = '#222831'
+PWA_APP_DEBUG_MODE = False
+PWA_APP_ICONS = [
+    {
+        'src': '/static/favicon_io/favicon-16x16.png',
+        'sizes': '16x16'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/favicon_io/favicon-16x16.png',
+        'sizes': '16x16'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/favicon_io/android-chrome-512x512.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'
+PWA_APP_SHORTCUTS = [
+    {
+        'name': 'Discussions',
+        'url': '/discussions',
+        'description': 'Explore Discussions.'
+    }
+]

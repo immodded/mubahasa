@@ -6,13 +6,13 @@
                   <a class="linkx" href="{% url 'admin:index' %}"><span>Admin Panel</span></a>
                   <a class="linkx" href="{% url 'profile_list' %}"><span>Profile List</span></a> 
                     {% endif %}
-<a class="linkx" style="margin-left:1rem;" href="{% url 'Discussion_start' %}">Start Discussion</a>
+<a class="linkx" style="margin-left:1rem;" href="{% url 'Discussion_start' %}"><i class="fa-regular fa-comments"></i> Start Discussion</a>
 
 {% if Discussions %}
-<h3 class="titlex">Most Liked Discussions</h3>
+<h3 class="titlex"> <i class="fa-solid fa-arrow-trend-up"></i> Most Liked Discussions</h3>
 <ul class="listx" >
 {% for Discussion in Discussions  %}
-    <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}">{{ Discussion.title }} [{{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>
+    <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i> {{ Discussion.title }} [{{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>
 {% endfor %}
 {% else %}
 <p>No Discussion Found! Start one! </p>

@@ -3,21 +3,21 @@
 
 {% block content %}
 <h2 class="titlex">{{ discussion.title }}</h2>
-<h5 class="titlex">Started at {{ discussion.created_at }} by {{ discussion.creator.username }}</h5>
+<h5 class="titlex">Started at {{ discussion.created_at }} by <i class="fa-solid fa-user"></i> {{ discussion.creator.username }}</h5>
 <p> {{ discussion.description }} <br>
-    <a class="linkx" href="{% url 'Message_create' discussion.pk %}">Post message [{{ Messages|length }}]</a>
+    <a class="linkx" href="{% url 'Message_create' discussion.pk %}"><i class="fa-regular fa-message"></i> Post message [{{ Messages|length }}]</a>
     <a href="{% url 'toggle_like' discussion.id %}" class="like-button {% if user_has_liked %}active{% endif %}">
         {% if user_has_liked %}
-            Unlike
+        <i class="fa-solid fa-heart fa-xl"></i>
         {% else %}
-            Like
+        <i class="fa-regular fa-heart"></i>
         {% endif %}[{{ total_likes }}]
     </a>
 </p>
 
 {% for message in Messages %}
 <div class="message-box">
-    <span class="message-meta"><span style="{% if message.creator == request.user %}color:Blue;{% endif %}">{{ message.creator }}</span> | {{ message.created_at|timesince }} ago</span>
+    <span class="message-meta"><span style="{% if message.creator == request.user %}color:Blue;{% endif %}"><i class="fa-solid fa-user"></i> {{ message.creator }}</span> | {{ message.created_at|timesince }} ago</span>
     <p class="message-body">{{ message.body }}</p>
 </div>
 {% endfor %}
@@ -28,7 +28,7 @@
 <h3 class="titlex">Participants</h3>
 <ul class="listx">
 {% for participant in participants %}
-    <li class="itemx">{{ participant.creator__username }}</li>
+    <li class="itemx"><i class="fa-solid fa-user"></i> {{ participant.creator__username }}</li>
 {% endfor %}
 </ul>
 {% else %}

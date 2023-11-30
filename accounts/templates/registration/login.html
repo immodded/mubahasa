@@ -12,9 +12,9 @@
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 {{ form }}
-                <input type="submit" value="login"> 
+                <button type="submit" class="form-button"><i class="fa-solid fa-right-to-bracket "></i> Log In</button>
                 <input type="hidden" name="next" value="{{ next }}">
-                <p>Not have account? <a class="linkx"href="{% url 'signup'%}">Create Account</a></p>
+                <p>Not have account? <a class="linkx"href="{% url 'signup'%}"><i class="fa-solid fa-user-plus"></i> Create Account</a></p>
             </form>
         </div>            
     {% endif %}
