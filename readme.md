@@ -21,3 +21,7 @@ DJango is used with custom css and fontawesome icons. the PWA functionality is u
 - make changes and create PR. if your dont know about what is PR then just close your browser and go do something else because you know... YOU KNOWS
 - Your support is neccessadsfry [i forget the spelling of neccessary] because i have created this whole project using a pentium dual core laptop with 2 GB ram and HDD.
 - you can hire me only if there is something related to django, flask and python programming. Remember!!! JS is outdated. so stop making thing using frameworks such as ASTROJS, REACTJS, and all.
+
+
+## License
+You should accept [MIT LICENSE](LICENSE) for anything.
