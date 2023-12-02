@@ -9,7 +9,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 class ModdView(View):
     template_name = "modd.html"
@@ -96,22 +97,22 @@ class DiscussionListView(ListView):
         return context    
 
     
-class MessageCreateView(LoginRequiredMixin,SuccessMessageMixin, CreateView):
-    model = Message
-    template_name = "form.html"
-    fields = ["body"]
-    success_message = "Message Successfull!"
-    def form_valid(self,form):
-        discussion = get_object_or_404(Discussion, pk=self.kwargs['pk'])
-        form.instance.discussion = discussion
-        form.instance.creator = self.request.user
-        return super().form_valid(form)
-    def get_success_url(self):
-        return reverse('Message_list', kwargs={'discussion_id': self.kwargs['pk']})
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Message"
-        return context
+# class MessageCreateView(LoginRequiredMixin,SuccessMessageMixin, CreateView):
+#     model = Message
+#     template_name = "form.html"
+#     fields = ["body"]
+#     success_message = "Message Successfull!"
+#     def form_valid(self,form):
+#         discussion = get_object_or_404(Discussion, pk=self.kwargs['pk'])
+#         form.instance.discussion = discussion
+#         form.instance.creator = self.request.user
+#         return super().form_valid(form)
+#     def get_success_url(self):
+#         return reverse('Message_list', kwargs={'discussion_id': self.kwargs['pk']})
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["title"] = "Message"
+#         return context
     
 
 class MessageListView(LoginRequiredMixin, ListView):
@@ -141,6 +142,32 @@ class MessageListView(LoginRequiredMixin, ListView):
             context['participants'] = participants
 
         return context
+
+    def post(self, request, *args, **kwargs):
+        discussion_id = self.kwargs.get('discussion_id')
+        message_body = request.POST.get('message')
+
+        try:
+            if not discussion_id or not message_body:
+                raise ValueError("Discussion ID or message body is missing.")
+
+            discussion = get_object_or_404(Discussion, pk=discussion_id)
+            creator = self.request.user
+            message = Message.objects.create(
+                creator=creator,
+                body=message_body,
+                discussion=discussion
+            )
+            messages.success(request, 'Message posted successfully.')
+            return HttpResponseRedirect(reverse('Message_list', kwargs={'discussion_id': discussion_id}))
+        except ValueError as e:
+            messages.error(request, str(e))
+            return HttpResponseRedirect(reverse('Message_list', kwargs={'discussion_id': discussion_id}))
+        except Exception as e:
+            messages.error(request, 'An error occurred while posting the message.')
+            return HttpResponseRedirect(reverse('Message_list', kwargs={'discussion_id': discussion_id}))
+
+
 
 
 class ToggleLikeView(View):

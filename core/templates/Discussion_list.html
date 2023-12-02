@@ -7,6 +7,12 @@
 {% block twitter_desc %}Discussions on MUBAHASA{% endblock twitter_desc %}
 {% block title %}Discussions{% endblock title %}
 
+
+{% block leftcontent %}
+
+{% include 'search_box.html' %}
+{% endblock leftcontent %}
+
 {% block content %}
 
 <a class="linkx" style="margin-left:1rem;" href="{% url 'Discussion_start' %}"><i class="fa-regular fa-comments"></i> Start Discussion</a>
@@ -19,6 +25,7 @@
 </ul>
 {% endif %}
 {% if Discussions %}
+<h3 class="titlex">Public Discussions</h3>
 <ul class="listx" >
 {% for Discussion in Discussions  %}
     <li class="itemx"><a class="linky" href="{% url 'Message_list' Discussion.pk %}"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i> {{ Discussion.title }} [ {% if request.user.is_superuser %}{{ Discussion.visibility }}{% endif %} {{ Discussion.created_at|timesince }} ago , by {{ Discussion.creator.username }}]</a></li>

@@ -8,34 +8,40 @@
 {% block title %}{{ discussion.title }}{% endblock title %}
 
 {% block content %}
+<div class="discussion-box">
 <h2 class="titlex">{{ discussion.title }}</h2>
 <h5 class="titlex">{{ discussion.visibility }} discussion Started at {{ discussion.created_at }} by <i class="fa-solid fa-user"></i> {{ discussion.creator.username }}</h5>
-<p> {{ discussion.description }} <br>
-    <a class="linkx" href="{% url 'Message_create' discussion.pk %}"><i class="fa-regular fa-message"></i> Post message [{{ Messages|length }}]</a>
-    <a href="{% url 'toggle_like' discussion.id %}" class="like-button {% if user_has_liked %}active{% endif %}">
-        {% if user_has_liked %}
-        <i class="fa-solid fa-heart fa-xl"></i>
-        {% else %}
-        <i class="fa-regular fa-heart"></i>
-        {% endif %}[{{ total_likes }}]
-    </a><hr>
-    <a class="like-button" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
-        <i class="fab fa-facebook fa-xl"></i>
-    </a>
-    <a class="like-button" href="https://wa.me/?text={{ request.build_absolute_uri }}" target="_blank">
-        <i class="fab fa-whatsapp fa-xl"></i>
-    </a>
-    <a class="like-button" href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank">
-        <i class="fab fa-x-twitter" fa-xl></i>
-    </a>
-    <a class="like-button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank">
-        <i class="fab fa-linkedin fa-xl"></i>
-    </a>
-    <a class="like-button" href="mailto:?body={{ request.build_absolute_uri }}" target="_blank">
-        <i class="fas fa-envelope"></i>
-    </a>
-    
-</p>
+{% comment %} <a class="linkx" href="{% url 'Message_create' discussion.pk %}"><i class="fa-regular fa-message"></i> Post message [{{ Messages|length }}]</a> {% endcomment %}
+<a href="{% url 'toggle_like' discussion.id %}" class="like-button {% if user_has_liked %}active{% endif %}">
+    {% if user_has_liked %}
+    <i class="fa-solid fa-heart fa-xl"></i>
+    {% else %}
+    <i class="fa-regular fa-heart"></i>
+    {% endif %}[{{ total_likes }}]
+</a>
+<a class="like-button" href="https://wa.me/?text={{ request.build_absolute_uri }}" target="_blank">
+    <i class="fab fa-whatsapp fa-xl"></i>
+</a>
+<a class="like-button" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+    <i class="fab fa-facebook fa-xl"></i>
+</a>
+<a class="like-button" href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank">
+    <i class="fab fa-x-twitter" fa-xl></i>
+</a>
+<a class="like-button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank">
+    <i class="fab fa-linkedin fa-xl"></i>
+</a>
+<a class="like-button" href="mailto:?body={{ request.build_absolute_uri }}" target="_blank">
+    <i class="fas fa-envelope"></i>
+</a>
+<p class="discussion-p"> {{ discussion.description|linebreaks }}</p>
+</div>
+<form method="post" action="{% url 'Message_list' discussion_id=discussion.id %}">
+    {% csrf_token %}
+    <textarea id="message" name="message" placeholder="Message" required></textarea>
+    <br>
+    <input type="submit" value="Post Message">
+</form>
 
 {% for message in Messages %}
 <div class="message-box">

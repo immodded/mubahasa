@@ -417,3 +417,27 @@ td a:hover {
 .like-button:hover {
     background-color: var(--secondary-color)
 }
+
+
+
+.discussion-box {
+    width: 60vw;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+}
+
+@media (max-width: 768px) {
+    .discussion-box {
+        width: 90vw; 
+    }
+}
+
+.discussion-p {
+    padding:5px 5px;
+    font-size: 14px;
+    color: var(--primary-color);
+    word-wrap: break-word;
+}
