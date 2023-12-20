@@ -32,8 +32,24 @@
     <i class="fab fa-linkedin fa-xl"></i>
 </a>
 <a class="like-button" href="mailto:?body={{ request.build_absolute_uri }}" target="_blank">
-    <i class="fas fa-envelope"></i>
+    <i class="fas fa-envelope fa-xl"></i>
 </a>
+
+<button class="like-button" style="border:none;" onclick="copyURL()"><i class="fas fa-copy fa-xl"></i></button>
+
+<script>
+  function copyURL() {
+    var currentURL = window.location.href;
+    var tempInput = document.createElement("input");
+    tempInput.value = currentURL;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); 
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+  }
+</script>
+
 <p class="discussion-p"> {{ discussion.description|linebreaks }}</p>
 </div>
 <form method="post" action="{% url 'Message_list' discussion_id=discussion.id %}">
