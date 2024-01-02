@@ -71,11 +71,15 @@ class DiscussionListView(ListView):
     template_name = "Discussion_list.html"
     def get_queryset(self):
         search_query = self.request.GET.get('q', '')
+        private_arg = self.request.GET.get('private', '0')
         if self.request.user.is_authenticated:
             if self.request.user.is_superuser:
                 queryset = Discussion.objects.all().order_by('-created_at')
             else:
-                queryset = Discussion.objects.all().filter(visibility='Public').order_by('-created_at')
+                if private_arg == '1':
+                    queryset = Discussion.objects.filter(creator=self.request.user, visibility='Private').order_by('-created_at')
+                else:    
+                    queryset = Discussion.objects.all().filter(visibility='Public').order_by('-created_at')
         else:
             queryset = Discussion.objects.all().filter(visibility='Public').order_by('-created_at')
 
@@ -91,9 +95,6 @@ class DiscussionListView(ListView):
         context = super().get_context_data(**kwargs)
         top_discussions_by_user = Discussion.objects.filter(visibility='Public').values('creator__username').annotate(total_discussions=Count('id')).order_by('-total_discussions')[:10]
         context['top_discussions_by_user'] = top_discussions_by_user
-        if self.request.user.is_authenticated:
-            private_discussions = Discussion.objects.filter(creator=self.request.user, visibility='Private')
-            context['private_discussions'] = private_discussions
         return context    
 
     
